@@ -22,7 +22,10 @@ const poller = async () => {
     const now = new Date();
     const fullDaysSinceEpoch = Math.floor(now/8.64e7);
 
-    const done = fullDaysSinceEpoch - stats.results.streaks.current_streak >= STREAK_START;
+    const daysSinceStreakStart = fullDaysSinceEpoch - STREAK_START;
+    console.log(`There have been ${daysSinceStreakStart} calendar days since the start of the streak`);
+
+    const done = stats.results.streaks.current_streak >= daysSinceStreakStart;
 
     console.log(`[${now}] Streak is at ${stats.results.streaks.current_streak} ${done ? '✅' : '😬' }`);
 
